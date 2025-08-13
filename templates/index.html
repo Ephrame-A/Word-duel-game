@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Duel ⚔️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../static/style.css"
+</head>
+<body>
+
+<div class="container">
+    <button id="rules-btn" class="secondary-btn">
+        <i class="fas fa-book"></i> Rules
+    </button>
+    
+    <h1>Word Duel  ⚔️</h1>
+    
+    <div class="score-container">
+        <div class="score-item" id="current-score">
+            Current Score
+            <div class="score-value">0</div>
+        </div>
+        <div class="score-item" id="high-score">
+            High Score
+            <div class="score-value">{{ highscore }}</div>
+        </div>
+    </div>
+    
+    <div class="game-area">
+        <div class="timer-container" id="timer">
+            <i class="fas fa-clock"></i>
+            <span>Time Remaining: --s</span>
+        </div>
+        
+        <div id="game-board">
+            <p id="info-message">Select a difficulty and click "Start Game" to begin!</p>
+        </div>
+        
+        <div id="input-section">
+            <div id="start-section">
+                <div id="difficulty-selector">
+                    <label>Difficulty Level</label>
+                    <select id="difficulty-level">
+                        <option value="easy">Easy (1 letter)</option>
+                        <option value="hard">Hard (2 letters)</option>
+                    </select>
+                </div>
+                <button id="start-btn" class="primary-btn">
+                    <i class="fas fa-play"></i> Start Game
+                </button>
+            </div>
+            
+            <div id="user-section" style="display: none;">
+                <div class="hints-container" id="hints-display">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Hints Remaining: 2</span>
+                </div>
+                
+                <p class="message" id="turn-message">
+                    Your turn! Word must start with: 
+                    <span class="turn-indicator" id="last-prefix-display"></span>
+                </p>
+                
+                <div class="user-input">
+                    <input type="text" id="user-input-box" placeholder="Type your word here" autocomplete="off">
+                    <button id="submit-btn" class="secondary-btn">
+                        <i class="fas fa-paper-plane"></i> Submit
+                    </button>
+                </div>
+
+                <div id="hint-section">
+                    <button id="hint-btn" class="hint-btn" disabled>
+                        <i class="fas fa-lightbulb"></i> Get Hint
+                    </button>
+                    <div id="hint-message" class="hint-message" style="display: none;"></div>
+                </div>
+                
+                <p class="error-message" id="error-message"></p>
+                <div class="notification boost-message" id="boost-message" style="display: none;"></div>
+                <div class="notification penalty-message" id="penalty-message" style="display: none;"></div>
+                <button id="interrupt-btn" class="tertiary-btn" style="margin-top: 15px;">
+                    <i class="fas fa-times-circle"></i> New Game
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="rules-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Game Rules</h2>
+        <p>Welcome to The Word Duel! The goal is to outlast your opponent by forming valid words.</p>
+        
+        <h3>How to Play</h3>
+        <p>The program will start with a word. Your task is to respond with a new, unique word that starts with the required prefix. The game alternates between you and the program until a player cannot find a valid word or the time runs out.</p>
+
+        <h3>Difficulty Levels</h3>
+        <ul>
+            <li><strong>Easy:</strong> Your word must start with the <strong>last letter</strong> of the previous word. You have a longer time limit.</li>
+            <li><strong>Hard:</strong> Your word must start with the <strong>last two letters</strong> of the previous word. The time limit is shorter.</li>
+        </ul>
+
+        <h3>Scoring & Time</h3>
+        <ul>
+            <li>You earn points equal to the length of your word.</li>
+            <li>If you respond quickly, you get a time bonus.</li>
+            <li>Incorrect words or redundant words will result in a time penalty.</li>
+            <li>The game ends when the time runs out, a player can't find a word, or you choose to start a new game. The highest score wins!</li>
+        </ul>
+        
+        <h3>Hints</h3>
+        <ul>
+            <li>You get two hints per game.</li>
+            <li>Click the "Get Hint" button to reveal a possible word.</li>
+        </ul>
+    </div>
+</div>
+
+<script src="../static/script.js"></script>
+</body>
+</html>
